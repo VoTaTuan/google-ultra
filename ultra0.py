@@ -62,6 +62,11 @@ ADB_CANDIDATES = [
     os.path.expanduser("~/Library/Android/sdk/platform-tools/adb"),
     "/opt/homebrew/bin/adb", "/usr/local/bin/adb", "/usr/bin/adb", "adb",
 ]
+if os.name == "nt":
+    import glob
+    ADB_CANDIDATES += glob.glob(os.path.expandvars(
+        r"%LOCALAPPDATA%\Microsoft\WinGet\Packages\Google.PlatformTools*\platform-tools\adb.exe"))
+    ADB_CANDIDATES.append(os.path.expandvars(r"%LOCALAPPDATA%\Android\Sdk\platform-tools\adb.exe"))
 
 
 # ---------- 基础工具 ----------
